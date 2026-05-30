@@ -17,4 +17,6 @@ public final class DomainConstants {
     public static final String BUDGET_WARNING = "Estás cerca del límite en la categoría %s";
     public static final String BUDGET_EXCEEDED = "Presupuesto agotado";
     public static final String BALANCE_NEGATIVE_ALERT = "Tus gastos superan tus ingresos este mes";
+    public static final String INVALID_MONTH = "El mes debe estar entre 1 y 12";
+    public static final String INVALID_YEAR = "El año debe estar entre 2025 y el año actual";
 }
