@@ -30,7 +30,7 @@ public class IncomeUseCase {
     }
 
     private void validateIncome(Income income) {
-        if (income.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
+        if (income.getAmount() == null || income.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
             throw new InvalidIncomeException(DomainConstants.AMOUNT_MUST_BE_POSITIVE);
         }
         if (!categoryGateway.existsById(income.getCategoryId())) {

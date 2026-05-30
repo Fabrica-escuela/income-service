@@ -1,5 +1,6 @@
 package com.udea.incomeservice.domain.usecase;
 
+import com.udea.incomeservice.domain.exception.DomainConstants;
 import com.udea.incomeservice.domain.gateway.ExpenseGateway;
 import com.udea.incomeservice.domain.gateway.IncomeGateway;
 import com.udea.incomeservice.domain.model.MonthlyBalance;
@@ -20,6 +21,12 @@ public class BalanceUseCase {
     }
 
     public MonthlyBalance getMonthlyBalance(Long userId, int year, int month) {
+        if (month < 1 || month > 12) {
+            throw new IllegalArgumentException(DomainConstants.INVALID_MONTH);
+        }
+        if (year < 2025 || year > LocalDate.now().getYear()) {
+            throw new IllegalArgumentException(DomainConstants.INVALID_YEAR);
+        }
         BigDecimal totalIncomes = incomeGateway.sumByUserIdAndMonth(userId, year, month);
         BigDecimal totalExpenses = expenseGateway.sumByUserIdAndMonth(userId, year, month);
         BigDecimal balance = totalIncomes.subtract(totalExpenses);

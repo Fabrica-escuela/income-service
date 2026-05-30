@@ -31,7 +31,7 @@ public class ExpenseUseCase {
     }
 
     private void validateExpense(Expense expense) {
-        if (expense.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
+        if (expense.getAmount() == null || expense.getAmount().compareTo(BigDecimal.ZERO) <= 0) {
             throw new InvalidExpenseException(DomainConstants.AMOUNT_MUST_BE_POSITIVE);
         }
         if (expense.getDate().isAfter(LocalDate.now())) {
