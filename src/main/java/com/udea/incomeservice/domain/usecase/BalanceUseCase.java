@@ -24,7 +24,7 @@ public class BalanceUseCase {
         if (month < 1 || month > 12) {
             throw new IllegalArgumentException(DomainConstants.INVALID_MONTH);
         }
-        if (year < 2025 || year > LocalDate.now().getYear()) {
+        if (year < 1 || year > LocalDate.now().getYear()) {
             throw new IllegalArgumentException(DomainConstants.INVALID_YEAR);
         }
         BigDecimal totalIncomes = incomeGateway.sumByUserIdAndMonth(userId, year, month);
